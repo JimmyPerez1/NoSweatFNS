@@ -23,8 +23,18 @@ app.use(require('./middleware/checkToken'));
 
 // API Routes
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/profiles', require('./routes/profiles'));
+app.use('/api/appliances', require('./routes/appliances'));
+app.use('/api/servicerequests', require('./routes/serviceRequests'));
+app.use('/api/documents', require('./routes/documents'));
+app.use('/api/invoices', require('./routes/invoices'));
 
-
+app.use((err, req, res, next) => {
+  console.error('Server Error:', err.stack);
+  res.status(err.status || 500).json({
+    error: err.message || 'Internal Server Error',
+  });
+});
 
 // Use a "catch-all" route to deliver the frontend's production index.html
 app.get('/*splat', function (req, res) {

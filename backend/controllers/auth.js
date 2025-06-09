@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Profile = require('../models/profile');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -24,8 +25,23 @@ async function logIn(req, res) {
 async function signUp(req, res) {
   try {
     const user = await User.create(req.body);
-    const token = createJWT(user);
-    res.json(token);
+    const profile = await Profile.create({
+    user: user._id,
+    address: '',
+    phone: '',
+    });
+    user.profile = profile._id;
+    await user.save();
+        const token = createJWT(user);
+    res.json({
+      token,
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        isAdmin: user.isAdmin,
+      },
+    });
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: 'Duplicate Email' });
