@@ -15,30 +15,31 @@ module.exports = {
 
 
 //Get profile 
-async function getProfileById(req, res, next) {
+async function getProfileById(req, res) {
   try {
+    console.log(req.user)
       const profileId = req.params.profileId?.toString();
       const userProfileId = req.user.profile?.toString();
 
-      console.log('User profile:', req.user.profile, typeof req.user.profile);
-      console.log('Param profileId:', req.params.profileId, typeof req.params.profileId);
+      // console.log('User profile:', req.user.profile, typeof req.user.profile);
+      // console.log('Param profileId:', req.params.profileId, typeof req.params.profileId);
 
     const isOwner = userProfileId === profileId;
     const isAdmin = req.user.isAdmin;
 
-    console.log('isOwner:', isOwner);
-    console.log('isAdmin:', isAdmin);
+    // console.log('isOwner:', isOwner);
+    // console.log('isAdmin:', isAdmin);
 
     if (!isOwner && !isAdmin) {
       return res.status(403).json({ error: 'Access denied' });
     }
 
     const profile = await Profile.findById(req.params.profileId)
-      .populate('user')
-      .populate('appliances')
-      .populate('documents')
-      .populate('invoices')
-      .populate('serviceRequests');
+      // .populate('user')
+      // .populate('appliances')
+      // .populate('documents')
+      // .populate('invoices')
+      // .populate('serviceRequests');
 
     if (!profile) return res.status(404).json({ error: 'Not found' });
 
