@@ -103,26 +103,3 @@ async function getAllProfiles(req, res, next) {
     next(err);
   }
 };
-
-
-
-
-
-
-
-
-async function addAppliance(req, res, next) {
-  try {
-    const appliance = await Appliance.create({
-      ...req.body,
-      profile: req.params.id,
-    });
- await Profile.findByIdAndUpdate(req.params.id, {
-      $push: { appliances: appliance._id },
-    });
-
-    res.status(201).json(appliance);
-  } catch (err) {
-    next(err);
-  }
-};
