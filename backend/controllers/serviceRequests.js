@@ -41,7 +41,7 @@ async function create(req, res, next) {
 
 async function show(req, res, next) {
   try {
-    const request = await ServiceRequest.findById(req.params.id);
+    const request = await ServiceRequest.findById(req.params.id).populate('profile');
     const isOwner = request.profile.equals(req.user.profile);
     const isAdmin = req.user.isAdmin;
 

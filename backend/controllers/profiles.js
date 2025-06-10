@@ -1,7 +1,9 @@
 const Profile = require('../models/profile');
 const Appliance = require('../models/appliance');
-const Document = require('../models/document');
-const Invoice = require('../models/invoice');
+const Document = require('../models/document'); 
+const Invoice = require('../models/invoice')
+const ServiceRequest = require('../models/serviceRequest')
+
 
 
 module.exports = {
@@ -15,14 +17,23 @@ module.exports = {
 //Get profile 
 async function getProfileById(req, res, next) {
   try {
-    const isOwner = req.user._id === req.params.id;
+      const profileId = req.params.profileId?.toString();
+      const userProfileId = req.user.profile?.toString();
+
+      console.log('User profile:', req.user.profile, typeof req.user.profile);
+      console.log('Param profileId:', req.params.profileId, typeof req.params.profileId);
+
+    const isOwner = userProfileId === profileId;
     const isAdmin = req.user.isAdmin;
+
+    console.log('isOwner:', isOwner);
+    console.log('isAdmin:', isAdmin);
 
     if (!isOwner && !isAdmin) {
       return res.status(403).json({ error: 'Access denied' });
     }
 
-    const profile = await Profile.findById(req.params.id)
+    const profile = await Profile.findById(req.params.profileId)
       .populate('user')
       .populate('appliances')
       .populate('documents')
@@ -40,7 +51,9 @@ async function getProfileById(req, res, next) {
 // Put update profiles
 async function updateProfile(req, res, next) {
   try {
-    const isOwner = req.user._id === req.params.id;
+    const profileId = req.params.profileId?.toString();
+    const userProfileId = req.user.profile?.toString();
+    const isOwner = userProfileId === profileId;
     const isAdmin = req.user.isAdmin;
 
     if (!isOwner && !isAdmin) {
@@ -48,7 +61,7 @@ async function updateProfile(req, res, next) {
     }
     if (req.body.newAddress) {
       const updated = await Profile.findByIdAndUpdate(
-        req.params.id,
+        req.params.profileId,
         { $push: { addresses: req.body.newAddress } },
         { new: true }
       );
@@ -56,13 +69,13 @@ async function updateProfile(req, res, next) {
     }
     if (req.body.removeAddressId) {
       const updated = await Profile.findByIdAndUpdate(
-        req.params.id,
+        req.params.profileId,
         { $pull: { addresses: { _id: req.body.removeAddressId } } },
         { new: true }
       );
       return res.json(updated);
     }
-     const updated = await Profile.findByIdAndUpdate(req.params.id, req.body, {
+     const updated = await Profile.findByIdAndUpdate(req.params.profileId, req.body, {
       new: true,
     });
     res.json(updated);
@@ -78,7 +91,7 @@ async function deleteProfile(req, res, next) {
       return res.status(403).json({ error: 'Admin access only' });
     }
 
-    await Profile.findByIdAndDelete(req.params.id);
+    await Profile.findByIdAndDelete(req.params.profileId);
     res.json({ message: 'Profile deleted' });
   } catch (err) {
     next(err);

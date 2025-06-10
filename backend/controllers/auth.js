@@ -27,8 +27,7 @@ async function signUp(req, res) {
     const user = await User.create(req.body);
     const profile = await Profile.create({
     user: user._id,
-    address: '',
-    phone: '',
+    phone: req.body.phone || '000-000-0000',
     });
     user.profile = profile._id;
     await user.save();
@@ -39,6 +38,7 @@ async function signUp(req, res) {
         _id: user._id,
         name: user.name,
         email: user.email,
+        profile: profile._id,
         isAdmin: user.isAdmin,
       },
     });
