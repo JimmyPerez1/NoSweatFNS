@@ -13,26 +13,28 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav className="NavBar">
-      <NavLink to="/">Home</NavLink>
-      &nbsp; | &nbsp;
-      {user ? (
-        <>
-          <NavLink to="/posts" end>
-            Post List
-          </NavLink>
-          &nbsp; | &nbsp;
-          <NavLink to="/posts/new">New Post</NavLink>
-          &nbsp; | &nbsp;
-          <Link to="/" onClick={handleLogOut}>Log Out</Link>
-          <span>Welcome, {user.name}</span>
-        </>
-      ) : (
-        <>
-          <NavLink to="/login">Log In</NavLink>
-          &nbsp; | &nbsp;
-          <NavLink to="/signup">Sign Up</NavLink>
-        </>
-      )}
+ <div className="NavBar-left">
+        <Link to="/" className="logo">NoSweat</Link>
+      </div>
+
+      <div className="NavBar-right">
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/services">Services</NavLink>
+        <NavLink to="/about">About Us</NavLink>
+
+        {user ? (
+          <>
+            <NavLink to="/profile">My Profile</NavLink>
+            <button onClick={handleLogOut} className="nav-button">Log Out</button>
+            <span className="welcome-msg">Welcome, {user.name}</span>
+          </>
+        ) : (
+          <>
+            <NavLink to="/login">Log In</NavLink>
+            <NavLink to="/signup">Sign Up</NavLink>
+          </>
+        )}
+      </div>
     </nav>
   );
 }

@@ -7,24 +7,38 @@
 }
 
 .NavBar {
-  a {
-    border-radius: 0.8vmin;
-    padding: 0.5vmin 1.5vmin;
-    text-decoration: none;
-    color: #1a1a1a;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+}
 
-  a:hover {
-    background-color: #1a1a1a;
-    color: whitesmoke;
-  }
+.NavBar-left .logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #1e3a8a;
+  text-decoration: none;
+}
 
-  a.active {
-    background-color: rebeccapurple;
-    color: whitesmoke;
-  }
+.NavBar-right a,
+.nav-button {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
 
-  span {
-    color: rgb(108, 9, 87);
-  }
+.nav-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.welcome-msg {
+  margin-left: 1rem;
+  font-style: italic;
+  color: #666;
 }
