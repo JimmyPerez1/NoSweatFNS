@@ -4,7 +4,7 @@ import { getUser } from '../../services/authService';
 import HomePage from '../HomePage/HomePage';
 // import ServicesPage from '../ServicesPage/ServicesPage';
 // import AboutPage from '../AboutPage/AboutPage';
-// import ProfilePage from '../ProfilePage/ProfilePage'; 
+import ProfilePage from '../ProfilePage/ProfilePAge';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LogInPage from '../LogInPage/LogInPage';
 import NavBar from '../../components/NavBar/NavBar';
@@ -29,9 +29,9 @@ export default function App() {
             </>
           )}
 
-          {/* {user && 
-            // <Route path="/profile" element={<ProfilePage user={user} />} />
-          } */}
+          {user && 
+            <Route path="/profile/:profileId" element={<ProfilePage />} />
+          }
 
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Routes>

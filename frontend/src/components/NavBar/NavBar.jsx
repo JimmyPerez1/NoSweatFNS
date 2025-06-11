@@ -24,7 +24,7 @@ export default function NavBar({ user, setUser }) {
 
         {user ? (
           <>
-            <NavLink to="/profile">My Profile</NavLink>
+            <NavLink to={`/profile/${user.profile}`}>My Profile</NavLink>
             <button onClick={handleLogOut} className="nav-button">Log Out</button>
             <span className="welcome-msg">Welcome, {user.name}</span>
           </>
