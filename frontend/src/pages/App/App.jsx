@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router';
+import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../services/authService';
 import HomePage from '../HomePage/HomePage';
 // import ServicesPage from '../ServicesPage/ServicesPage';
@@ -30,7 +30,7 @@ export default function App() {
           )}
 
           {user && 
-            <Route path="/profile/:profileId" element={<ProfilePage />} />
+            <Route path="/profile/:profileId" element={<ProfilePage user={user} />} />
           }
 
           {/* <Route path="*" element={<Navigate to="/" />} /> */}

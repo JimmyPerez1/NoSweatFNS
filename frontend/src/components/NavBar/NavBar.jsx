@@ -1,14 +1,15 @@
-import { NavLink, Link, useNavigate } from 'react-router';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { logOut } from '../../services/authService';
 import './NavBar.css';
 
 export default function NavBar({ user, setUser }) {
   const navigate = useNavigate();
 
+console.log("NavBar user object:", JSON.stringify(user, null, 2));
+
   function handleLogOut() {
     logOut();
     setUser(null);
-    // The <Link> that was clicked will navigate to "/"
   }
 
   return (

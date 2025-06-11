@@ -5,6 +5,7 @@ import './ProfilePages.css';
 
 export default function ProfilePage({ user }) {
   const { profileId } = useParams(); 
+  console.log("Profile ID from useParams:", profileId);
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -13,15 +14,14 @@ useEffect(() => {
   async function fetchProfile() {
     if (!profileId) return;
 
-    console.log('Fetching profile with ID:', profileId); // should log
+    console.log('Fetching profile with ID:', profileId); 
     try {
       const data = await profileService.getById(profileId);
-      console.log('Fetched profile:', data); // should log
+      console.log('Fetched profile:', data); 
       setProfile(data);
       setLoading(false);
     } catch (err) {
-      console.error('Error fetching profile:', err);
-      setLoading(false);
+    console.error('Error fetching profile:', err.response || err.message || err);      setLoading(false);
     }
   }
 
