@@ -4,6 +4,10 @@ const Schema = mongoose.Schema;
 const profileSchema = new Schema(
 
   {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
     addresses: [
       {
       label: { type: String },
@@ -15,7 +19,6 @@ const profileSchema = new Schema(
     ],
     phone: {
       type: String,
-      required: true,
     },
     companyName: {
       type: String,
