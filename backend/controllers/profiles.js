@@ -35,11 +35,11 @@ async function getProfileById(req, res) {
     }
 
     const profile = await Profile.findById(req.params.profileId)
-      // .populate('user')
-      // .populate('appliances')
+      .populate('user')
+      .populate('appliances')
       // .populate('documents')
       // .populate('invoices')
-      // .populate('serviceRequests');
+      .populate('serviceRequests');
 
     if (!profile) return res.status(404).json({ error: 'Not found' });
 

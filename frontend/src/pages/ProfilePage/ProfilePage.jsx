@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'; 
+import ServiceRequestForm from '../../components/ServiceRequestForm/ServiceRequestForm';
+import { createRequest } from '../../services/requestService'; 
 import * as profileService from '../../services/profileService';
 import './ProfilePage.css';
 
@@ -8,6 +10,7 @@ export default function ProfilePage({ user }) {
   // console.log("Profile ID from useParams:", profileId);
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showRequestForm, setShowRequestForm] = useState(false);
 
 
 useEffect(() => {
@@ -28,6 +31,26 @@ useEffect(() => {
     fetchProfile();
   }, [profileId]);
 
+async function handleCreateRequest(formData) {
+  try {
+      const dataToSend = { ...formData };
+    if (!dataToSend.appliance || dataToSend.appliance.trim() === '') {
+      delete dataToSend.appliance;
+    }
+    console.log('Submitting request with:', formData);
+    const res = await createRequest(dataToSend);
+    console.log('Response:', res);
+    alert('Service request submitted!');
+    setShowRequestForm(false);
+
+    const updatedProfile = await profileService.getById(profileId);
+    setProfile(updatedProfile);
+  } catch (err) {
+    console.error('Error in createRequest:', err.response || err.message || err);
+    alert('Something went wrong submitting the request.');
+  }
+}
+
   if (!profile) return <p>Loading...</p>;
 
   const isAdmin = user?.isAdmin;
@@ -38,7 +61,7 @@ useEffect(() => {
         <h3>My Info</h3>
         {!isAdmin && (
           <>
-            <button>➕Request Service</button>
+            <button onClick={() => setShowRequestForm(true)}>➕Request Service</button>
             <button>💲Make a Payment</button>
           </>
         )}
@@ -112,11 +135,24 @@ useEffect(() => {
           </div>
           <ul>
             {profile.serviceRequests.map((req, idx) => (
-              <li key={idx}>{req.issueSummary} - Status: {req.status}</li>
+            <li key={idx} className="service-request-line">
+              <div className="service-request-left">
+              {new Date(req.requestedDate).toLocaleDateString()} &nbsp;|&nbsp; {req.issueSummary}
+              </div>
+              <div className="service-request-status">
+              | Status: {req.status}
+              </div>
+            </li>
             ))}
           </ul>
         </section>
       </main>
+            {showRequestForm && (
+              <ServiceRequestForm
+              onSubmit={handleCreateRequest}
+              onClose={() => setShowRequestForm(false)}
+              />
+            )}
     </div>
   );
 }

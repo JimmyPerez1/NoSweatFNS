@@ -1,16 +1,19 @@
 .ProfilePage {
   display: flex;
-  flex-direction: row;
   min-height: 100vh;
+  width: 100vw;
+  margin: 0;
   font-family: 'Inter', sans-serif;
 }
 
-/* Sidebar */
+
 .Sidebar {
-  width: 250px;
-  background-color: #f8f9fa;
+  flex: 0 0 250px;
+  background-color: #7a7d82; 
   padding: 1rem;
-  border-right: 1px solid #dee2e6;
+  border-right: 1px solid #ddd;
+  height: 100vh;
+  margin: 0;
 }
 
 .Sidebar h3 {
@@ -35,9 +38,8 @@
   background-color: #0056b3;
 }
 
-/* Dashboard Content */
 .Dashboard {
-  flex-grow: 1;
+  flex: 1;
   padding: 2rem;
   background-color: #f1f3f5;
 }
@@ -47,13 +49,14 @@
   margin-bottom: 1.5rem;
 }
 
-/* Panels */
+
 .panel {
-  background: white;
-  border-radius: 10px;
-  padding: 1.25rem;
+  max-width: 100%;
   margin-bottom: 2rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 .panel-header {
@@ -98,4 +101,25 @@
 
 .panel a:hover {
   text-decoration: underline;
+}
+
+.service-request-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+  gap: 1rem;
+}
+
+.service-request-left {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.service-request-status {
+  margin-left: auto;
+  font-weight: 500;
 }
