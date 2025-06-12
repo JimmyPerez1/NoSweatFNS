@@ -11,11 +11,10 @@ const serviceRequestSchema = new Schema(
     appliance: {
       type: Schema.Types.ObjectId,
       ref: 'Appliance',
-      required: true,
     },
     issueSummary: {
       type: String,
-      required: true,
+      default: "Filled out by Technician",
     },
     requestedDate: {
       type: Date,

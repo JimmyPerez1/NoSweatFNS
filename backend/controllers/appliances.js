@@ -11,7 +11,7 @@ module.exports = {
 
 
 // admin add appliance
-async function addAppliance(req, res, next) {
+async function addAppliance(req, res) {
   try {
     if (!req.user.isAdmin) {
       return res.status(403).json({ error: 'Admin access only' });
@@ -26,11 +26,12 @@ async function addAppliance(req, res, next) {
 
     res.status(201).json(appliance);
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong' });
   }
 };
 
-async function updateAppliance(req, res, next) {
+async function updateAppliance(req, res) {
   try {
     if (!req.user.isAdmin) {
       return res.status(403).json({ error: 'Admin access only' });
@@ -46,11 +47,12 @@ async function updateAppliance(req, res, next) {
 
     res.json(updated);
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong' });
   }
 }
 
-async function deleteAppliance(req, res, next) {
+async function deleteAppliance(req, res) {
   try {
     if (!req.user.isAdmin) {
       return res.status(403).json({ error: 'Admin access only' });
@@ -66,6 +68,7 @@ async function deleteAppliance(req, res, next) {
 
     res.json({ message: 'Appliance deleted' });
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong' });
   }
 }

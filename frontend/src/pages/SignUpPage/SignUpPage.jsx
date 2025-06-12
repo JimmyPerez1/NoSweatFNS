@@ -21,7 +21,7 @@ export default function SignUpPage({ setUser }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      console.log('Submitting signup with:', formData);
+      // console.log('Submitting signup with:', formData);
       const user = await signUp(formData);
       setUser(user);
       navigate(`/profile/${user.profile}`);

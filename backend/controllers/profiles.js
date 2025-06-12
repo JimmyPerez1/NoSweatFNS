@@ -45,12 +45,13 @@ async function getProfileById(req, res) {
 
     res.json(profile);
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong' });
   }
 };
 
 // Put update profiles
-async function updateProfile(req, res, next) {
+async function updateProfile(req, res) {
   try {
     const profileId = req.params.profileId?.toString();
     const userProfileId = req.user.profile?.toString();
@@ -81,12 +82,13 @@ async function updateProfile(req, res, next) {
     });
     res.json(updated);
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong' });
   }
 };
 
 // Delete Profile admins only
-async function deleteProfile(req, res, next) {
+async function deleteProfile(req, res) {
   try {
     if (!req.user.isAdmin) {
       return res.status(403).json({ error: 'Admin access only' });
@@ -95,12 +97,13 @@ async function deleteProfile(req, res, next) {
     await Profile.findByIdAndDelete(req.params.profileId);
     res.json({ message: 'Profile deleted' });
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong' });
   }
 };
 
 // Get all profiles admins only
-async function getAllProfiles(req, res, next) {
+async function getAllProfiles(req, res) {
   try {
     if (!req.user.isAdmin) {
       return res.status(403).json({ error: 'Admin access only' });
@@ -114,6 +117,7 @@ async function getAllProfiles(req, res, next) {
 
     res.json(profiles);
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong' });
   }
 };

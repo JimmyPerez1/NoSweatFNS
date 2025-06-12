@@ -9,19 +9,24 @@ module.exports = {
   deleteRequest,
 };
 
-async function index(req, res, next) {
+async function index(req, res) {
   try {
-    const requests = await ServiceRequest.find({})
-      .populate("profile")
+    const filter = req.user.isAdmin
+      ? {}
+      : { profile: req.user.profile };
+
+    const requests = await ServiceRequest.find(filter)
+      .populate('profile')
       .sort({ createdAt: -1 });
 
     res.json(requests);
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong' });
   }
 }
 
-async function create(req, res, next) {
+async function create(req, res) {
   try {
     const request = await ServiceRequest.create({
       ...req.body,
@@ -35,11 +40,12 @@ async function create(req, res, next) {
 
     res.status(201).json(request);
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).json({ error: 'Failed to create service request' });
   }
 }
 
-async function show(req, res, next) {
+async function show(req, res) {
   try {
     const request = await ServiceRequest.findById(req.params.id).populate('profile');
     const isOwner = request.profile.equals(req.user.profile);
@@ -51,13 +57,19 @@ async function show(req, res, next) {
 
     res.json(request);
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong' });
   }
 }
 
-async function update(req, res, next) {
+async function update(req, res) {
   try {
     const request = await ServiceRequest.findById(req.params.id);
+
+    if (!request) {
+      return res.status(404).json({ error: "Service request not found" });
+    }
+
     const isOwner = request.profile.equals(req.user.profile);
     const isAdmin = req.user.isAdmin;
 
@@ -78,13 +90,19 @@ async function update(req, res, next) {
 
     res.json(updated);
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong' });
   }
 }
 
-async function deleteRequest(req, res, next) {
+async function deleteRequest(req, res) {
   try {
     const request = await ServiceRequest.findById(req.params.id);
+
+    if (!request) {
+      return res.status(404).json({ error: "Service request not found" });
+    }
+
     const isOwner = request.profile.equals(req.user.profile);
     const isAdmin = req.user.isAdmin;
 
@@ -93,8 +111,9 @@ async function deleteRequest(req, res, next) {
     }
 
     await request.deleteOne();
-    res.json({ message: "Request deleted" });
+    res.json({ message: "Request deleted successfully" });
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong' });
   }
 }
