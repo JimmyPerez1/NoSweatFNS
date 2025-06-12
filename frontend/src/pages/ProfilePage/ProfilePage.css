@@ -1,0 +1,101 @@
+.ProfilePage {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Sidebar */
+.Sidebar {
+  width: 250px;
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-right: 1px solid #dee2e6;
+}
+
+.Sidebar h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.Sidebar button {
+  display: block;
+  margin-bottom: 1rem;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.Sidebar button:hover {
+  background-color: #0056b3;
+}
+
+/* Dashboard Content */
+.Dashboard {
+  flex-grow: 1;
+  padding: 2rem;
+  background-color: #f1f3f5;
+}
+
+.Dashboard h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Panels */
+.panel {
+  background: white;
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.panel-header h3 {
+  margin: 0;
+}
+
+.panel-header button {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.panel-header button.admin-only {
+  background-color: #6c757d;
+}
+
+.panel ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.panel li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.panel a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.panel a:hover {
+  text-decoration: underline;
+}

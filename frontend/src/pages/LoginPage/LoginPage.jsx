@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import * as authService from '../../services/authService';
 
 export default function LogInPage({ setUser }) {
@@ -16,7 +16,7 @@ export default function LogInPage({ setUser }) {
     try {
       const user = await authService.logIn(formData);
       setUser(user);
-      navigate('/home');
+      navigate('/');
     } catch (err) {
       setErrorMsg('Log In Failed - Try Again');
     }

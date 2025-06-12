@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'; 
 import * as profileService from '../../services/profileService';
-import './ProfilePages.css';
+import './ProfilePage.css';
 
 export default function ProfilePage({ user }) {
   const { profileId } = useParams(); 
-  console.log("Profile ID from useParams:", profileId);
+  // console.log("Profile ID from useParams:", profileId);
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -14,10 +14,10 @@ useEffect(() => {
   async function fetchProfile() {
     if (!profileId) return;
 
-    console.log('Fetching profile with ID:', profileId); 
+    // console.log('Fetching profile with ID:', profileId); 
     try {
       const data = await profileService.getById(profileId);
-      console.log('Fetched profile:', data); 
+      // console.log('Fetched profile:', data); 
       setProfile(data);
       setLoading(false);
     } catch (err) {

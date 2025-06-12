@@ -5,7 +5,7 @@ import './NavBar.css';
 export default function NavBar({ user, setUser }) {
   const navigate = useNavigate();
 
-console.log("NavBar user object:", JSON.stringify(user, null, 2));
+// console.log("NavBar user object:", JSON.stringify(user, null, 2));
 
   function handleLogOut() {
     logOut();
@@ -21,7 +21,8 @@ console.log("NavBar user object:", JSON.stringify(user, null, 2));
       <div className="NavBar-right">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/services">Services</NavLink>
-        <NavLink to="/about">About Us</NavLink>
+        <NavLink to="/aboutus">About Us</NavLink>
+        <NavLink to="/FAQ">FAQs</NavLink>
 
         {user ? (
           <>

@@ -1,3 +1,3 @@
 export default function HomePage() {
-  return <h1>FAQ Page</h1>;
+  return <h1>Services Page</h1>;
 }

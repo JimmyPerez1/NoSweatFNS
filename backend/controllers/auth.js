@@ -24,7 +24,8 @@ async function logIn(req, res) {
 
 async function signUp(req, res) {
   try {
-    const user = await User.create(req.body);
+    const { name, email, password } = req.body;
+    const user = await User.create({ name, email, password });
     const profile = await Profile.create({
     user: user._id,
     phone: req.body.phone || '000-000-0000',

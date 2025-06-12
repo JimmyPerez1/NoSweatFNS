@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../services/authService';
 import HomePage from '../HomePage/HomePage';
-// import ServicesPage from '../ServicesPage/ServicesPage';
-// import AboutPage from '../AboutPage/AboutPage';
-import ProfilePage from '../ProfilePage/ProfilePAge';
+import ServicesPage from '../ServicesPage/ServicesPage';
+import AboutUsPage from '../AboutUsPage/AboutUsPage';
+import FaqPage from '../FaqPage/FaqPage';
+import ProfilePage from '../ProfilePage/ProfilePage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LogInPage from '../LogInPage/LogInPage';
 import NavBar from '../../components/NavBar/NavBar';
@@ -19,8 +20,9 @@ export default function App() {
       <section id="main-section">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          {/* <Route path="/services" element={<ServicesPage />} />
-          <Route path="/about" element={<AboutPage />} /> */}
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/aboutus" element={<AboutUsPage />} />
+          <Route path="/FAQ" element={<FaqPage />} />
 
           {!user && (
             <>

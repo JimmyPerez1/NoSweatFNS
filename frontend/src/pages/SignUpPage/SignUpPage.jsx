@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { signUp } from '../../services/authService';
 
 export default function SignUpPage({ setUser }) {
@@ -21,10 +21,12 @@ export default function SignUpPage({ setUser }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
+      console.log('Submitting signup with:', formData);
       const user = await signUp(formData);
       setUser(user);
-      navigate('/posts');
+      navigate('/');
     } catch (err) {
+      console.error(err);
       setErrorMsg('Sign Up Failed - Try Again');
     }
   }
