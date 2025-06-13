@@ -6,14 +6,12 @@ export async function signUp(userData) {
   const res = await sendRequest(BASE_URL + '/signup', 'POST', userData);
   const token = typeof res === 'string' ? res : res.token;    console.log("Token received:", token); 
   localStorage.setItem('token', token);
-  // console.log("JWT format check:", token.split('.').length);
   return getUser();
 }
 
 export async function logIn(credentials) {
   const token = await sendRequest(`${BASE_URL}/login`, 'POST', credentials);
   localStorage.setItem('token', token);
-  // console.log("JWT format check:", token.split('.').length);
   return getUser();
 }
 

@@ -5,8 +5,6 @@ import './NavBar.css';
 export default function NavBar({ user, setUser }) {
   const navigate = useNavigate();
 
-// console.log("NavBar user object:", JSON.stringify(user, null, 2));
-
   function handleLogOut() {
     logOut();
     setUser(null);

@@ -4,7 +4,7 @@ import * as requestService from '../../services/requestService';
 import './ServiceRequestShowPage.css';
 
 export default function ServiceRequestShowPage() {
-  const { requestId } = useParams();
+  const { requestId, profileId } = useParams();
   const navigate = useNavigate();
   const [request, setRequest] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -25,16 +25,14 @@ const data = await requestService.getRequestById(requestId);
   }, [requestId]);
 
   async function handleDelete() {
-    if (window.confirm('Are you sure you want to delete this request?')) {
       try {
-        await requestService.deleteRequest(requestId);
+        await requestService.deleteRequest(request._id);
         alert('Request deleted.');
-        navigate(-1);
+        navigate(`/profile/${request.profile._id}`);
         } catch (err) {
         console.error('Delete failed:', err);
         alert('Something went wrong deleting the request.');
-      }
-    }
+      } 
   }
 
   if (loading) return <p>Loading...</p>;
@@ -53,7 +51,9 @@ const data = await requestService.getRequestById(requestId);
         <button onClick={handleDelete} className="delete-button">🗑️ Delete</button>
       </div>
 
-      <Link to={-1} className="back-link">← Back</Link>
+      <Link to={`/profile/${request.profile}`} className="back-link">
+        ← Back to Dashboard
+      </Link>
     </div>
   );
 }
