@@ -1,0 +1,56 @@
+.EditRequestPage {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+}
+
+.EditRequestPage h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.EditRequestPage form {
+  display: flex;
+  flex-direction: column;
+}
+
+.EditRequestPage label {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.EditRequestPage input,
+.EditRequestPage select,
+.EditRequestPage textarea {
+  margin-top: 0.3rem;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.EditRequestPage button {
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+}
+
+.EditRequestPage button:hover {
+  background-color: #0056b3;
+}
+
+.EditRequestPage button[type="button"] {
+  background-color: #6c757d;
+  margin-left: 0.5rem;
+}
+
+.EditRequestPage button[type="button"]:hover {
+  background-color: #495057;
+}

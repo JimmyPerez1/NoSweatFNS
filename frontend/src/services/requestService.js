@@ -13,8 +13,8 @@ export function getRequestById(id) {
   return sendRequest(`${BASE_URL}/${id}`);
 }
 
-export function updateRequest(id, data) {
-  return sendRequest(`${BASE_URL}/${id}`, 'PUT', data);
+export function updateRequest(id, requestData) {
+  return sendRequest(`${BASE_URL}/${id}`, 'PUT', requestData);
 }
 
 export function deleteRequest(id) {
