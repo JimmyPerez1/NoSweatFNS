@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { getUser } from '../../services/authService';
 import './ServiceRequestForm.css';
 
 export default function ServiceRequestForm({ onSubmit, onClose }) {
+  const user = getUser();
   const [formData, setFormData] = useState({
     appliance: '',
     issueSummary: 'Filled out by Technician',
@@ -16,7 +18,7 @@ export default function ServiceRequestForm({ onSubmit, onClose }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     onSubmit(formData);
-    onClose(); 
+    onClose();
   }
 
   return (
@@ -24,14 +26,18 @@ export default function ServiceRequestForm({ onSubmit, onClose }) {
       <div className="popup">
         <h3>Request Service</h3>
         <form onSubmit={handleSubmit}>
-          <label>Appliance ID (if known)</label>
-          <input
-            type="text"
-            name="appliance"
-            value={formData.appliance}
-            onChange={handleChange}
-            placeholder="Leave blank if unknown"
-          />
+          {user?.isAdmin && (
+            <>
+              <label>Appliance ID (if known)</label>
+              <input
+                type="text"
+                name="appliance"
+                value={formData.appliance}
+                onChange={handleChange}
+                placeholder="Leave blank if unknown"
+              />
+            </>
+          )}
 
           <label>Requested Date</label>
           <input
@@ -41,13 +47,13 @@ export default function ServiceRequestForm({ onSubmit, onClose }) {
             onChange={handleChange}
           />
 
-          <label>Additional Notes</label>
+          <label>Notes</label>
           <textarea
             name="notes"
             value={formData.notes}
             onChange={handleChange}
-            rows="3"
-            placeholder="Optional"
+            rows="5"
+            placeholder="What's Going on?"
           />
 
           <button type="submit">Submit</button>

@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { getUser } from '../../services/authService';
 import * as requestService from '../../services/requestService';
 import './ServiceRequestEditPage.css';
 
 export default function ServiceRequestEditPage() {
   const { requestId } = useParams();
   const navigate = useNavigate();
+  const user = getUser();
   const [formData, setFormData] = useState({
     issueSummary: '',
     requestedDate: '',
@@ -18,10 +20,15 @@ export default function ServiceRequestEditPage() {
     async function fetchData() {
       try {
         const data = await requestService.getRequestById(requestId);
+        if (!data) {
+          console.error('No data returned for request ID:', requestId);
+          return;
+        }
+
         setFormData({
-          issueSummary: data.issueSummary,
-          requestedDate: data.requestedDate.slice(0, 10),
-          status: data.status,
+          issueSummary: data.issueSummary || '',
+          requestedDate: new Date(data.requestedDate).toISOString().slice(0, 10),
+          status: data.status || 'pending',
           notes: data.notes || ''
         });
         setLoading(false);
@@ -41,6 +48,7 @@ export default function ServiceRequestEditPage() {
     try {
       await requestService.updateRequest(requestId, formData);
       alert('Request updated successfully.');
+      console.log('Submitting formData:', formData);
       navigate(`/requests/${requestId}`);
     } catch (err) {
       console.error('Failed to update request:', err);
@@ -54,6 +62,8 @@ export default function ServiceRequestEditPage() {
     <div className="EditRequestPage">
       <h2>Edit Service Request</h2>
       <form onSubmit={handleSubmit}>
+                {user?.isAdmin && (
+          <>
         <label>Issue Summary</label>
         <input
           type="text"
@@ -62,6 +72,8 @@ export default function ServiceRequestEditPage() {
           onChange={handleChange}
           required
         />
+                  </>
+        )}
 
         <label>Requested Date</label>
         <input
@@ -71,19 +83,24 @@ export default function ServiceRequestEditPage() {
           onChange={handleChange}
           required
         />
+        
 
-        <label>Status</label>
-        <select
-          name="status"
-          value={formData.status}
-          onChange={handleChange}
-          required
-        >
-          <option value="pending">Pending</option>
-          <option value="scheduled">Scheduled</option>
-          <option value="completed">Completed</option>
-          <option value="cancelled">Cancelled</option>
-        </select>
+        {user?.isAdmin && (
+          <>
+            <label>Status</label>
+            <select
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+              required
+            >
+              <option value="pending">Pending</option>
+              <option value="scheduled">Scheduled</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </>
+        )}
 
         <label>Notes</label>
         <textarea
