@@ -49,12 +49,17 @@ async function signUp(req, res) {
   }
 }
 
-/*--- Helper Functions ---*/
-
 function createJWT(user) {
   return jwt.sign(
-    // data payload
-    { user },
+    {
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        profile: user.profile,
+        isAdmin: user.isAdmin
+      }
+    },
     process.env.SECRET,
     { expiresIn: '24h' }
   );

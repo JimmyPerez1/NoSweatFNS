@@ -7,7 +7,6 @@ import './ProfilePage.css';
 
 export default function ProfilePage({ user }) {
   const { profileId } = useParams();
-  // console.log("Profile ID from useParams:", profileId);
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showRequestForm, setShowRequestForm] = useState(false);
@@ -17,10 +16,8 @@ export default function ProfilePage({ user }) {
     async function fetchProfile() {
       if (!profileId) return;
 
-      // console.log('Fetching profile with ID:', profileId); 
       try {
         const data = await profileService.getById(profileId);
-        // console.log('Fetched profile:', data); 
         setProfile(data);
         setLoading(false);
       } catch (err) {
@@ -37,9 +34,7 @@ export default function ProfilePage({ user }) {
       if (!dataToSend.appliance || dataToSend.appliance.trim() === '') {
         delete dataToSend.appliance;
       }
-      console.log('Submitting request with:', formData);
       const res = await createRequest(dataToSend);
-      console.log('Response:', res);
       alert('Service request submitted!');
       setShowRequestForm(false);
 
@@ -65,7 +60,16 @@ export default function ProfilePage({ user }) {
             <button>💲Make a Payment</button>
           </>
         )}
-        {isAdmin && <button className="admin-only">🔎Admin Tools</button>}
+        {isAdmin && (
+          <>
+          <Link to="/admin/search">
+            <button className="admin-only">🔎 Search Clients</button>
+          </Link>
+          <Link to="/requests">
+            <button className="admin-only">🔎 View Requests</button>
+          </Link>
+          </>
+        )}
       </aside>
 
       <main className="Dashboard">
@@ -76,8 +80,8 @@ export default function ProfilePage({ user }) {
             <h3>Client Info</h3>
             <button>Edit</button>
           </div>
-          <p>Name: {user.name}</p>
-          <p>Email: {user.email}</p>
+          <p>Name: {profile.user.name}</p>
+          <p>Email: {profile.user.email}</p>
           <p>Phone: {profile.phone}</p>
           <ul>
             {profile.addresses.map((addr, idx) => (
@@ -91,7 +95,7 @@ export default function ProfilePage({ user }) {
         <section className="panel">
           <div className="panel-header">
             <h3>Appliances & Warranty Info</h3>
-            {isAdmin && <button className="admin-only">Edit</button>}
+            {isAdmin && <button className="admin-only">✏️Edit</button>}
           </div>
           {profile.appliances.length ? (
             <ul>
@@ -112,7 +116,7 @@ export default function ProfilePage({ user }) {
             {isAdmin && (
               <>
                 <button className="admin-only"> ➕Add New</button>
-                <button className="admin-only">Edit</button>
+                <button className="admin-only">✏️Edit</button>
               </>
             )}
           </div>
@@ -129,7 +133,7 @@ export default function ProfilePage({ user }) {
             {isAdmin && (
               <>
                 <button className="admin-only"> ➕Add New</button>
-                <button className="admin-only">Edit</button>
+                <button className="admin-only">✏️Edit</button>
               </>
             )}
           </div>

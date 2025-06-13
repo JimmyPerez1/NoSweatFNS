@@ -8,6 +8,8 @@ import FaqPage from '../FaqPage/FaqPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LogInPage from '../LogInPage/LogInPage';
+import SearchClientsPage from '../Admin/SearchClientPage';
+import ServiceRequestIndex from '../ServiceRequestPage/ServiceRequestIndexPage';
 import ServiceRequestShow from '../ServiceRequestPage/ServiceRequestShowPage';
 import ServiceRequestEdit from '../ServiceRequestPage/ServiceRequestEditPage';
 import NavBar from '../../components/NavBar/NavBar';
@@ -36,8 +38,11 @@ export default function App() {
           {user && 
           <>
             <Route path="/profile/:profileId" element={<ProfilePage user={user} />} />
+            <Route path="/admin/search" element={<SearchClientsPage />} />
+            <Route path="/requests" element={<ServiceRequestIndex />} />
             <Route path="/requests/:requestId" element={<ServiceRequestShow />} />
             <Route path="/requests/:requestId/edit" element={<ServiceRequestEdit />} />
+
             <Route path="/signup" element={<Navigate to={`/profile/${user.profile}`} />} />
             <Route path="/login" element={<Navigate to={`/profile/${user.profile}`} />} />
           </>
