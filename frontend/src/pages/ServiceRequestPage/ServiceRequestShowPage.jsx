@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import { getUser } from '../../services/authService';
 import * as requestService from '../../services/requestService';
 import './ServiceRequestShowPage.css';
 
@@ -8,11 +9,13 @@ export default function ServiceRequestShowPage() {
   const navigate = useNavigate();
   const [request, setRequest] = useState(null);
   const [loading, setLoading] = useState(true);
+  const user = getUser();
+  const id = profileId || user?.profile;
 
   useEffect(() => {
     async function fetchRequest() {
       try {
-const data = await requestService.getRequestById(requestId);
+        const data = await requestService.getRequestById(requestId);
         setRequest(data);
         setLoading(false);
       } catch (err) {
@@ -25,14 +28,14 @@ const data = await requestService.getRequestById(requestId);
   }, [requestId]);
 
   async function handleDelete() {
-      try {
-        await requestService.deleteRequest(request._id);
-        alert('Request deleted.');
-        navigate(`/profile/${request.profile._id}`);
-        } catch (err) {
-        console.error('Delete failed:', err);
-        alert('Something went wrong deleting the request.');
-      } 
+    try {
+      await requestService.deleteRequest(request._id);
+      alert('Request deleted.');
+      navigate(`/profile/${request.profile._id}`);
+    } catch (err) {
+      console.error('Delete failed:', err);
+      alert('Something went wrong deleting the request.');
+    }
   }
 
   if (loading) return <p>Loading...</p>;
@@ -51,7 +54,7 @@ const data = await requestService.getRequestById(requestId);
         <button onClick={handleDelete} className="delete-button">🗑️ Delete</button>
       </div>
 
-      <Link to={`/profile/${request.profile}`} className="back-link">
+      <Link to={`/profile/${id}`} className="back-link">
         ← Back to Dashboard
       </Link>
     </div>

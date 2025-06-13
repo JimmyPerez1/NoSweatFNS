@@ -1,15 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getUser } from '../../services/authService';
+import * as applianceService from '../../services/applianceService';
 import './ServiceRequestForm.css';
 
 export default function ServiceRequestForm({ onSubmit, onClose }) {
   const user = getUser();
+  const [appliances, setAppliances] = useState([]);
   const [formData, setFormData] = useState({
-    appliance: '',
-    issueSummary: 'Filled out by Technician',
+    applianceId: '',
+    issueSummary: 'Diagnostic Work Order',
     requestedDate: '',
     notes: '',
   });
+
+  useEffect(() => {
+    async function fetchAppliances() {
+      try {
+        const data = await applianceService.getAppliances(); // Adjust if this requires user/profileId
+        setAppliances(data);
+      } catch (err) {
+        console.error('Error fetching appliances:', err);
+      }
+    }
+    fetchAppliances();
+  }, []);
 
   function handleChange(evt) {
     setFormData({ ...formData, [evt.target.name]: evt.target.value });
@@ -28,14 +42,25 @@ export default function ServiceRequestForm({ onSubmit, onClose }) {
         <form onSubmit={handleSubmit}>
           {user?.isAdmin && (
             <>
-              <label>Appliance ID (if known)</label>
-              <input
-                type="text"
-                name="appliance"
-                value={formData.appliance}
+              <label>Appliance Type</label>
+              <select
+                name="applianceId"
+                value={formData.applianceId}
                 onChange={handleChange}
-                placeholder="Leave blank if unknown"
-              />
+                required
+              >
+                <option value="">-- Select Appliance --</option>
+                {appliances.map(appliance => (
+                  <option key={appliance._id} value={appliance._id}>
+                    {appliance.brand} – {appliance.type}
+                  </option>
+                ))}
+              </select>
+              {appliances.length === 0 && (
+                <p className="no-appliances-msg">
+                  ⚠️ No appliances available for this user.
+                </p>
+              )}
             </>
           )}
 
