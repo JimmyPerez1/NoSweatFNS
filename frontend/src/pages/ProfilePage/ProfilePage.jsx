@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import ServiceRequestForm from '../../components/ServiceRequestForm/ServiceRequestForm';
 import { createRequest } from '../../services/requestService';
 import * as profileService from '../../services/profileService';
+import Modal from '../../components/Modal/Modal';
 import DragAndDropUploader from '../../components/DragAndDropUploader/DragAndDropUploader';
 import './ProfilePage.css';
 
@@ -127,7 +128,9 @@ export default function ProfilePage({ user }) {
                 <button
                   className="admin-only"
                   onClick={() => {
-                    setSelectedDocType('Document'); setShowUploader(true);
+                    console.log('Add New Document clicked');
+                    setSelectedDocType('Document');
+                    setShowUploader(true);
                   }}
                 >
                   ➕ Add New
@@ -152,6 +155,7 @@ export default function ProfilePage({ user }) {
                 <button
                   className="admin-only"
                   onClick={() => {
+                    console.log('Add New Invoice clicked');
                     setSelectedDocType('Invoice');
                     setShowUploader(true);
                   }}
@@ -209,10 +213,9 @@ export default function ProfilePage({ user }) {
           )}
         </section>
         {showUploader && (
-          <section className="panel mt-4">
-            <div className="panel-header">
+  <Modal onClose={() => setShowUploader(false)}>
+        <div className="uploader-modal-content">
               <h4>Upload New {selectedDocType || 'File'}</h4>
-            </div>
             <div className="work-order-selector">
               <label htmlFor="workOrderNumber">Work Order #:</label>
               <select
@@ -239,7 +242,8 @@ export default function ProfilePage({ user }) {
                 setProfile(updated);
               }}
             />
-          </section>
+            </div>
+          </Modal>
         )}
       </main>
       {showRequestForm && (

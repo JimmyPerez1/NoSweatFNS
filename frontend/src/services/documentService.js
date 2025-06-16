@@ -11,17 +11,17 @@ export async function uploadDocument(file, folder = 'misc', docType, workOrderNu
   const ext = file.name.split('.').pop();
   const safeDocType = docType.replace(/\s+/g, '');
   const fileName = `${safeDocType}-WO-${workOrderNumber}.${ext}`;
-  const filePath = `${folder}/${fileName}`;
+  const filePath = `${fileName}`;
 
   const { data, error } = await supabase.storage
-    .from('documents')
+    .from('nosweat-documents')
     .upload(filePath, file, { upsert: true });
 
   if (error) throw error;
 
   const { data: publicUrlData } = supabase
     .storage
-    .from('documents')
+    .from('nosweat-documents')
     .getPublicUrl(filePath);
 
   return publicUrlData.publicUrl;
