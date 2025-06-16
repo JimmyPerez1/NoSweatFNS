@@ -1,16 +1,21 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const serviceRequestSchema = new Schema(
   {
     profile: {
       type: Schema.Types.ObjectId,
-      ref: 'Profile',
+      ref: "Profile",
+      required: true,
+    },
+    workOrderNumber: {
+      type: String,
+      unique: true,
       required: true,
     },
     appliance: {
       type: Schema.Types.ObjectId,
-      ref: 'Appliance',
+      ref: "Appliance",
     },
     issueSummary: {
       type: String,
@@ -24,15 +29,15 @@ const serviceRequestSchema = new Schema(
     },
     status: {
       type: String,
-      enum: ['pending', 'scheduled', 'in-progress', 'completed', 'cancelled'],
-      default: 'pending',
+      enum: ["pending", "scheduled", "in-progress", "completed", "cancelled"],
+      default: "pending",
     },
     notes: {
       type: String,
     },
     createdBy: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
     },
   },
   {
@@ -40,4 +45,4 @@ const serviceRequestSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model('ServiceRequest', serviceRequestSchema);
+module.exports = mongoose.model("ServiceRequest", serviceRequestSchema);

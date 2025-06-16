@@ -95,7 +95,12 @@ export default function ProfilePage({ user }) {
         <section className="panel">
           <div className="panel-header">
             <h3>Appliances & Warranty Info</h3>
-            {isAdmin && <button className="admin-only">✏️Edit</button>}
+            {isAdmin && (
+              <>
+                <button className="admin-only"> ➕Add New</button>
+                <button className="admin-only">✏️Edit</button>
+              </>
+            )}
           </div>
           {profile.appliances.length ? (
             <ul>
@@ -113,6 +118,23 @@ export default function ProfilePage({ user }) {
         <section className="panel">
           <div className="panel-header">
             <h3>Documents</h3>
+            {isAdmin && (
+              <>
+                <button className="admin-only"> ➕Add New</button>
+                <button className="admin-only">✏️Edit</button>
+              </>
+            )}
+          </div>
+          <ul>
+            {profile.documents.map((doc, idx) => (
+              <li key={idx}><a href={doc.url} target="_blank" rel="noreferrer">{doc.type}</a></li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="panel">
+          <div className="panel-header">
+            <h3>Invoices</h3>
             {isAdmin && (
               <>
                 <button className="admin-only"> ➕Add New</button>

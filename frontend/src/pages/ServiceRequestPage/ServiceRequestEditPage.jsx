@@ -48,7 +48,6 @@ export default function ServiceRequestEditPage() {
     try {
       await requestService.updateRequest(requestId, formData);
       alert('Request updated successfully.');
-      console.log('Submitting formData:', formData);
       navigate(`/requests/${requestId}`);
     } catch (err) {
       console.error('Failed to update request:', err);
