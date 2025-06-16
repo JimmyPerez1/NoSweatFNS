@@ -25,6 +25,8 @@ app.use(require('./middleware/checkToken'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/profile', require('./routes/profiles'));
 app.use('/api/servicerequests', require('./routes/serviceRequests'));
+app.use('/api/appliances', require('./routes/appliances'));
+app.use('/api/documents', require('./routes/documents'));
 
 app.use((err, req, res, next) => {
   console.error('Server Error:', err.stack);

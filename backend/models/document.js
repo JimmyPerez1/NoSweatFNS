@@ -17,6 +17,10 @@
         enum: ['Invoice', 'Contract', 'Estimate', 'Warranty', 'Work Order Form'],
         required: true,
       },
+      invoice: { 
+        type: Schema.Types.ObjectId,
+        ref: 'Invoice' }
+      ,
       url: {
         type: String,
         required: true,

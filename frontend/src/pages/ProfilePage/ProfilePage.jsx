@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import ServiceRequestForm from '../../components/ServiceRequestForm/ServiceRequestForm';
 import { createRequest } from '../../services/requestService';
 import * as profileService from '../../services/profileService';
+import DragAndDropUploader from '../../components/DragAndDropUploader/DragAndDropUploader';
 import './ProfilePage.css';
 
 export default function ProfilePage({ user }) {
@@ -10,6 +11,9 @@ export default function ProfilePage({ user }) {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showRequestForm, setShowRequestForm] = useState(false);
+  const [showUploader, setShowUploader] = useState(false);
+  const [selectedDocType, setSelectedDocType] = useState('');
+  const [selectedWorkOrder, setSelectedWorkOrder] = useState('');
 
 
   useEffect(() => {
@@ -62,12 +66,12 @@ export default function ProfilePage({ user }) {
         )}
         {isAdmin && (
           <>
-          <Link to="/admin/search">
-            <button className="admin-only">🔎 Search Clients</button>
-          </Link>
-          <Link to="/requests">
-            <button className="admin-only">🔎 View Requests</button>
-          </Link>
+            <Link to="/admin/search">
+              <button className="admin-only">🔎 Search Clients</button>
+            </Link>
+            <Link to="/requests">
+              <button className="admin-only">🔎 View Requests</button>
+            </Link>
           </>
         )}
       </aside>
@@ -120,7 +124,14 @@ export default function ProfilePage({ user }) {
             <h3>Documents</h3>
             {isAdmin && (
               <>
-                <button className="admin-only"> ➕Add New</button>
+                <button
+                  className="admin-only"
+                  onClick={() => {
+                    setSelectedDocType('Document'); setShowUploader(true);
+                  }}
+                >
+                  ➕ Add New
+                </button>
                 <button className="admin-only">✏️Edit</button>
               </>
             )}
@@ -137,7 +148,16 @@ export default function ProfilePage({ user }) {
             <h3>Invoices</h3>
             {isAdmin && (
               <>
-                <button className="admin-only"> ➕Add New</button>
+
+                <button
+                  className="admin-only"
+                  onClick={() => {
+                    setSelectedDocType('Invoice');
+                    setShowUploader(true);
+                  }}
+                >
+                  ➕ Add New
+                </button>
                 <button className="admin-only">✏️Edit</button>
               </>
             )}
@@ -159,25 +179,68 @@ export default function ProfilePage({ user }) {
               </>
             )}
           </div>
-          <ul>
-            {profile.serviceRequests.map((req, idx) => (
-              <li key={idx} className="service-request-line">
-                <div className="service-request-left">
-                  {new Date(req.requestedDate).toLocaleDateString()}
-                  &nbsp;|&nbsp;
-                  <span className="service-request-left">
-                    <Link to={`/requests/${req._id}`} className="request-link">
-                      {req.issueSummary}
-                    </Link>
-                  </span>
-                </div>
-                <div className="service-request-status">
-                  | Status: {req.status}
-                </div>
-              </li>
-            ))}
-          </ul>
+          {profile.serviceRequests.length ? (
+            <table className="service-binder-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Work Order #</th>
+                  <th>Issue Summary</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {profile.serviceRequests.map((req, idx) => (
+                  <tr key={idx}>
+                    <td>{new Date(req.requestedDate).toLocaleDateString()}</td>
+                    <td>{req.workOrderNumber || 'N/A'}</td>
+                    <td>
+                      <Link to={`/requests/${req._id}`} className="request-link">
+                        {req.issueSummary}
+                      </Link>
+                    </td>
+                    <td>{req.status}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p>No service requests yet.</p>
+          )}
         </section>
+        {showUploader && (
+          <section className="panel mt-4">
+            <div className="panel-header">
+              <h4>Upload New {selectedDocType || 'File'}</h4>
+            </div>
+            <div className="work-order-selector">
+              <label htmlFor="workOrderNumber">Work Order #:</label>
+              <select
+                id="workOrderNumber"
+                value={selectedWorkOrder}
+                onChange={(e) => setSelectedWorkOrder(e.target.value)}
+              >
+                <option value="">-- Select --</option>
+                {profile.serviceRequests.map((req) => (
+                  <option key={req._id} value={req.workOrderNumber}>
+                    {req.workOrderNumber || `#${req._id.slice(-4)} (No Number)`}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <DragAndDropUploader
+              docType={selectedDocType}
+              workOrderNumber={selectedWorkOrder || 'Unassigned'}
+              profileId={profile._id}
+              onUploadComplete={async () => {
+                setShowUploader(false);
+                setSelectedWorkOrder('');
+                const updated = await profileService.getById(profileId);
+                setProfile(updated);
+              }}
+            />
+          </section>
+        )}
       </main>
       {showRequestForm && (
         <ServiceRequestForm
@@ -188,3 +251,4 @@ export default function ProfilePage({ user }) {
     </div>
   );
 }
+

@@ -5,9 +5,23 @@ const Appliance = require('../models/appliance');
 
 module.exports = {
   addAppliance,
+  getAppliances,
   updateAppliance,
   deleteAppliance
 };
+
+async function getAppliances(req, res) {
+  try {
+    const profileId = req.query.profileId || req.user.profile;
+
+    const appliances = await Appliance.find({ profile: profileId });
+
+    res.json(appliances);
+  } catch (err) {
+    console.error('Error fetching appliances:', err);
+    res.status(500).json({ error: 'Failed to fetch appliances' });
+  }
+}
 
 
 // admin add appliance
