@@ -5,6 +5,7 @@ import { createRequest } from '../../services/requestService';
 import * as profileService from '../../services/profileService';
 import Modal from '../../components/Modal/Modal';
 import DragAndDropUploader from '../../components/DragAndDropUploader/DragAndDropUploader';
+import { signIn } from '../../services/documentService'
 import './ProfilePage.css';
 
 export default function ProfilePage({ user }) {
@@ -73,6 +74,9 @@ export default function ProfilePage({ user }) {
             <Link to="/requests">
               <button className="admin-only">🔎 View Requests</button>
             </Link>
+            <button onClick={signIn} className="admin-only">
+              🔐 Login to Supabase
+            </button>
           </>
         )}
       </aside>
@@ -129,7 +133,8 @@ export default function ProfilePage({ user }) {
                   className="admin-only"
                   onClick={() => {
                     console.log('Add New Document clicked');
-                    setSelectedDocType('Document');
+                    setSelectedDocType('');
+                    setSelectedWorkOrder('');
                     setShowUploader(true);
                   }}
                 >
@@ -156,7 +161,8 @@ export default function ProfilePage({ user }) {
                   className="admin-only"
                   onClick={() => {
                     console.log('Add New Invoice clicked');
-                    setSelectedDocType('Invoice');
+                    setSelectedDocType('');
+                    setSelectedWorkOrder('');
                     setShowUploader(true);
                   }}
                 >
@@ -213,35 +219,56 @@ export default function ProfilePage({ user }) {
           )}
         </section>
         {showUploader && (
-  <Modal onClose={() => setShowUploader(false)}>
-        <div className="uploader-modal-content">
+          <Modal onClose={() => setShowUploader(false)}>
+            <div className="uploader-modal-content">
               <h4>Upload New {selectedDocType || 'File'}</h4>
-            <div className="work-order-selector">
-              <label htmlFor="workOrderNumber">Work Order #:</label>
-              <select
-                id="workOrderNumber"
-                value={selectedWorkOrder}
-                onChange={(e) => setSelectedWorkOrder(e.target.value)}
-              >
-                <option value="">-- Select --</option>
-                {profile.serviceRequests.map((req) => (
-                  <option key={req._id} value={req.workOrderNumber}>
-                    {req.workOrderNumber || `#${req._id.slice(-4)} (No Number)`}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <DragAndDropUploader
-              docType={selectedDocType}
-              workOrderNumber={selectedWorkOrder || 'Unassigned'}
-              profileId={profile._id}
-              onUploadComplete={async () => {
-                setShowUploader(false);
-                setSelectedWorkOrder('');
-                const updated = await profileService.getById(profileId);
-                setProfile(updated);
-              }}
-            />
+              <div className="work-order-selector">
+                <label htmlFor="workOrderNumber">Work Order #:</label>
+                <select
+                  id="workOrderNumber"
+                  value={selectedWorkOrder}
+                  onChange={(e) => setSelectedWorkOrder(e.target.value)}
+                >
+                  <option value="">-- Select --</option>
+                  {profile.serviceRequests.map((req) => (
+                    <option key={req._id} value={req.workOrderNumber}>
+                      {req.workOrderNumber || `#${req._id.slice(-4)} (No Number)`}
+                    </option>
+                  ))}
+                </select>
+                <div className="doc-type-selector">
+                  <label htmlFor="docType">Document Type:</label>
+                  <select
+                    id="docType"
+                    value={selectedDocType}
+                    onChange={(e) => setSelectedDocType(e.target.value)}
+                  >
+                    <option value="">-- Select Type --</option>
+                    <option value="Invoice">Invoice</option>
+                    <option value="Contract">Contract</option>
+                    <option value="Estimates">Estimates</option>
+                    <option value="Warranty">Warranty</option>
+                    <option value="WorkOrderForm">WorkOrderForm</option>
+                  </select>
+                </div>
+              </div>
+              {selectedDocType ? (
+                <DragAndDropUploader
+                  docType={selectedDocType}
+                  workOrderNumber={selectedWorkOrder || 'Unassigned'}
+                  profileId={profile._id}
+                  onUploadComplete={async () => {
+                    setShowUploader(false);
+                    setSelectedWorkOrder('');
+                    const updated = await profileService.getById(profileId);
+                    setProfile(updated);
+                  }}
+                />
+              ) : (
+                <p style={{ color: 'red', marginTop: '1rem' }}>
+                  Please select a document type to continue.
+                </p>
+              )}
             </div>
           </Modal>
         )}

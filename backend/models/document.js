@@ -14,7 +14,7 @@
       },
       type: {
         type: String,
-        enum: ['Invoice', 'Contract', 'Estimate', 'Warranty', 'Work Order Form'],
+        enum: ['Invoice', 'Contract', 'Estimates', 'Warranty', 'WorkOrderForm'],
         required: true,
       },
       invoice: { 
