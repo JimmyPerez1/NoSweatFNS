@@ -120,7 +120,7 @@ export default function ProfilePage({ user }) {
               ))}
             </ul>
           ) : (
-            <p>No appliances listed.</p>
+            <p>No Appliances Listed.</p>
           )}
         </section>
 
@@ -144,11 +144,40 @@ export default function ProfilePage({ user }) {
               </>
             )}
           </div>
-          <ul>
-            {profile.documents.map((doc, idx) => (
-              <li key={idx}><a href={doc.url} target="_blank" rel="noreferrer">{doc.type}</a></li>
-            ))}
-          </ul>
+
+          {profile.documents?.filter(doc => doc.type !== 'Invoice').length ? (
+            <table className="doc-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Document Name</th>
+                  <th>Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                {profile.documents
+                  .filter(doc => doc.type !== 'Invoice')
+                  .sort((a, b) => new Date(b.uploadDate) - new Date(a.uploadDate))
+                  .map((doc, idx) => (
+                    <tr key={idx}>
+                      <td>{new Date(doc.uploadDate).toLocaleDateString()}</td>
+                      <td>
+                        <a
+                          href={doc.url}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {decodeURIComponent(doc.url.split('/').pop())}
+                        </a>
+                      </td>
+                      <td>{doc.type}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          ) : (
+            <p>No Documents Listed.</p>
+          )}
         </section>
 
         <section className="panel">
@@ -156,7 +185,6 @@ export default function ProfilePage({ user }) {
             <h3>Invoices</h3>
             {isAdmin && (
               <>
-
                 <button
                   className="admin-only"
                   onClick={() => {
@@ -172,11 +200,42 @@ export default function ProfilePage({ user }) {
               </>
             )}
           </div>
-          <ul>
-            {profile.documents.map((doc, idx) => (
-              <li key={idx}><a href={doc.url} target="_blank" rel="noreferrer">{doc.type}</a></li>
-            ))}
-          </ul>
+          {profile.documents.filter(doc => doc.type === 'Invoice').length ? (
+            <table className="doc-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Document Name</th>
+                  <th>Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                {profile.documents
+                  .filter(doc => doc.type === 'Invoice')
+                  .sort((a, b) => new Date(b.uploadDate) - new Date(a.uploadDate))
+                  .map((doc, idx) => (
+                    <tr key={idx}>
+                      <td title={new Date(doc.uploadDate).toISOString()}>
+                        {new Date(doc.uploadDate).toLocaleDateString()}
+                      </td>
+                      <td>
+                        <a
+                          href={doc.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          title={doc.name}
+                        >
+                          {decodeURIComponent(doc.url.split('/').pop())}
+                        </a>
+                      </td>
+                      <td>{doc.type}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          ) : (
+            <p>No Invoices Listed.</p>
+          )}
         </section>
 
         <section className="panel">
@@ -203,9 +262,15 @@ export default function ProfilePage({ user }) {
                 {profile.serviceRequests.map((req, idx) => (
                   <tr key={idx}>
                     <td>{new Date(req.requestedDate).toLocaleDateString()}</td>
-                    <td>{req.workOrderNumber || 'N/A'}</td>
+                    <td title={req.workOrderNumber || 'N/A'}>
+                      {req.workOrderNumber || 'N/A'}
+                    </td>
                     <td>
-                      <Link to={`/requests/${req._id}`} className="request-link">
+                      <Link
+                        to={`/requests/${req._id}`}
+                        className="request-link"
+                        title={req.issueSummary}
+                      >
                         {req.issueSummary}
                       </Link>
                     </td>

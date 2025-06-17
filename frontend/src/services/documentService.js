@@ -24,8 +24,8 @@ export async function create(documentData) {
 export async function uploadDocument(file, folder = "misc", docType, workOrderNumber){
   const ext = file.name.split(".").pop();
   const safeDocType = docType.replace(/\s+/g, "");
-  const fileName = `${safeDocType}-WO-${workOrderNumber}.${ext}`;
-  const filePath = `${fileName}`;
+  const fileName = `${safeDocType}-${workOrderNumber}.${ext}`;
+  const filePath = `${folder}/${fileName}`;
 
   const { data, error } = await supabase.storage
     .from("nosweat-documents")

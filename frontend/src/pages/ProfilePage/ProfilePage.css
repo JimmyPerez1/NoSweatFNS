@@ -123,3 +123,41 @@
   margin-left: auto;
   font-weight: 500;
 }
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+.doc-table th,
+.doc-table td {
+  padding: 0.5rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #ddd;
+}
+
+.doc-table th {
+  font-weight: 600;
+}
+
+.service-binder-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.service-binder-table th,
+.service-binder-table td {
+  padding: 0.5rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #ddd;
+}
+
+.service-binder-table td:nth-child(2),
+.service-binder-table td:nth-child(3) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
