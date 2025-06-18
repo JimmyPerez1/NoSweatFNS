@@ -7,7 +7,7 @@ import AboutUsPage from '../AboutUsPage/AboutUsPage';
 import FaqPage from '../FaqPage/FaqPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import SignUpPage from '../SignUpPage/SignUpPage';
-import LogInPage from '../LogInPage/LogInPage';
+import LogInPage from '../LoginPage/LoginPage';
 import SearchClientsPage from '../Admin/SearchClientPage';
 import ServiceRequestIndex from '../ServiceRequestPage/ServiceRequestIndexPage';
 import ServiceRequestShow from '../ServiceRequestPage/ServiceRequestShowPage';
