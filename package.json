@@ -18,6 +18,5 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.15.1",
     "morgan": "^1.10.0",
-    "react-routernpx -dom": "^7.6.2"
   }
 }
