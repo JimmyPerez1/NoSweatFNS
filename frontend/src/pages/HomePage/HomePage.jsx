@@ -1,6 +1,8 @@
+import Footer from '../../components/Footer/Footer';
+
 export default function HomePage() {
   return (
- <div className="relative h-screen w-full overflow-hidden">
+ <div className="relative h-[45vh] w-full overflow-hidden">
       {/* Background Video */}
       <video
         autoPlay

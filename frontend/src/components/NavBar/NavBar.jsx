@@ -20,7 +20,7 @@ export default function NavBar({ user, setUser }) {
       <div className="NavBar-right">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/services">Services</NavLink>
-        <NavLink to="/aboutus">About Us</NavLink>
+        <NavLink to="/aboutus">AboutUs</NavLink>
         <NavLink to="/FAQ">FAQs</NavLink>
 
         {user ? (
