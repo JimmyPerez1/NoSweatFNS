@@ -11,9 +11,10 @@ export default function NavBar({ user, setUser }) {
   }
 
   return (
-    <nav className="NavBar">
- <div className="NavBar-left">
-        <Link to="/" className="logo">NoSweat</Link>
+    <nav className="bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center shadow-sm">
+      <div className="flex items-center">
+        <Link to="/">
+<img src="/logo.png" alt="No Sweat HVAC Logo" className="h-8 w-auto" />        </Link>
       </div>
 
       <div className="NavBar-right">

@@ -19,9 +19,9 @@ export default function App() {
   const [user, setUser] = useState(getUser());
 
   return (
- <main className="App">
+    <main className="min-h-screen bg-gray-100 text-gray-900 font-sans">
       <NavBar user={user} setUser={setUser} />
-      <section id="main-section">
+      <section id="main-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/services" element={<ServicesPage />} />
@@ -35,17 +35,17 @@ export default function App() {
             </>
           )}
 
-          {user && 
-          <>
-            <Route path="/profile/:profileId" element={<ProfilePage user={user} />} />
-            <Route path="/admin/search" element={<SearchClientsPage />} />
-            <Route path="/requests" element={<ServiceRequestIndex />} />
-            <Route path="/requests/:requestId" element={<ServiceRequestShow />} />
-            <Route path="/requests/:requestId/edit" element={<ServiceRequestEdit />} />
+          {user &&
+            <>
+              <Route path="/profile/:profileId" element={<ProfilePage user={user} />} />
+              <Route path="/admin/search" element={<SearchClientsPage />} />
+              <Route path="/requests" element={<ServiceRequestIndex />} />
+              <Route path="/requests/:requestId" element={<ServiceRequestShow />} />
+              <Route path="/requests/:requestId/edit" element={<ServiceRequestEdit />} />
 
-            <Route path="/signup" element={<Navigate to={`/profile/${user.profile}`} />} />
-            <Route path="/login" element={<Navigate to={`/profile/${user.profile}`} />} />
-          </>
+              <Route path="/signup" element={<Navigate to={`/profile/${user.profile}`} />} />
+              <Route path="/login" element={<Navigate to={`/profile/${user.profile}`} />} />
+            </>
           }
 
           <Route path="*" element={<Navigate to="/" />} />
