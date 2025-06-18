@@ -2,8 +2,9 @@ import Footer from '../../components/Footer/Footer';
 
 export default function HomePage() {
   return (
- <div className="relative h-[45vh] w-full overflow-hidden">
+    <div>
       {/* Background Video */}
+            <section className="relative h-screen w-full overflow-hidden">
       <video
         autoPlay
         loop
@@ -16,7 +17,7 @@ export default function HomePage() {
       </video>
 
       {/* Overlay Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4 bg-black/40">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4 bg-blue-900/60">
         <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
           No Sweat Father & Son
         </h1>
@@ -25,11 +26,24 @@ export default function HomePage() {
         </p>
         <a
           href="/signup"
-          className="bg-white text-black font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-gray-100 transition"
+          className="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition"
         >
           Join the Family
         </a>
+
       </div>
+    </section>
+            {/* Services */}
+      <section className="py-16 bg-gray-100">
+        <div className="max-w-6xl mx-auto grid gap-8 grid-cols-1 md:grid-cols-3 px-6 text-center">
+          {['Maintenance & Repairs', 'New System Installs', 'Deals and Finance options'].map((title) => (
+            <div key={title} className="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
+              <h3 className="text-xl font-semibold mb-2">{title}</h3>
+              <p className="text-gray-600">Brief description of {title.toLowerCase()} services.</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

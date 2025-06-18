@@ -6,7 +6,7 @@ import * as profileService from '../../services/profileService';
 import Modal from '../../components/Modal/Modal';
 import DragAndDropUploader from '../../components/DragAndDropUploader/DragAndDropUploader';
 import { signIn } from '../../services/documentService'
-import './ProfilePage.css';
+
 
 export default function ProfilePage({ user }) {
   const { profileId } = useParams();

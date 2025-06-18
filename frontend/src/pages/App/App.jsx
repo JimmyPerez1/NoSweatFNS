@@ -13,6 +13,7 @@ import ServiceRequestIndex from '../ServiceRequestPage/ServiceRequestIndexPage';
 import ServiceRequestShow from '../ServiceRequestPage/ServiceRequestShowPage';
 import ServiceRequestEdit from '../ServiceRequestPage/ServiceRequestEditPage';
 import NavBar from '../../components/NavBar/NavBar';
+import Footer from '../../components/Footer/Footer'
 import './App.css';
 
 export default function App() {
@@ -51,6 +52,7 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </section>
+      <Footer />
     </main>
   );
 }

@@ -8,9 +8,7 @@
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color: #1a1a1a;
-  background-color: whitesmoke;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -86,4 +84,10 @@ h2 {
 
 .error-message {
   color: rgb(166, 29, 29);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
 }
