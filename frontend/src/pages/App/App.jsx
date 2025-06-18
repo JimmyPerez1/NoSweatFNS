@@ -5,7 +5,7 @@ import HomePage from '../HomePage/HomePage';
 import ServicesPage from '../ServicesPage/ServicesPage';
 import AboutUsPage from '../AboutUsPage/AboutUsPage';
 import FaqPage from '../FaqPage/FaqPage';
-import ProfilePage from '../ProfilePage/ProfilePage'
+import ProfilePage from '../ProfilePage/Profile'
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LogInPage from '../LoginPage/LoginPage';
 import SearchClientsPage from '../Admin/SearchClientPage';
@@ -16,7 +16,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import './App.css';
 
 export default function App() {
-  const [user, setUser] = useState(getUser());git 
+  const [user, setUser] = useState(getUser());
 
   return (
     <main className="min-h-screen bg-gray-100 text-gray-900 font-sans">
