@@ -5,7 +5,7 @@ import HomePage from '../HomePage/HomePage';
 import ServicesPage from '../ServicesPage/ServicesPage';
 import AboutUsPage from '../AboutUsPage/AboutUsPage';
 import FaqPage from '../FaqPage/FaqPage';
-import ProfilePage from '../ProfilePage/ProfilePage';
+import ProfilePage from '../ProfilePage/ProfilePage'
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LogInPage from '../LoginPage/LoginPage';
 import SearchClientsPage from '../Admin/SearchClientPage';
