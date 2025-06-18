@@ -16,7 +16,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import './App.css';
 
 export default function App() {
-  const [user, setUser] = useState(getUser());
+  const [user, setUser] = useState(getUser());git 
 
   return (
     <main className="min-h-screen bg-gray-100 text-gray-900 font-sans">
