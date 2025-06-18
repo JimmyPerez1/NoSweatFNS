@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router';
 import ServiceRequestForm from '../../components/ServiceRequestForm/ServiceRequestForm';
 import { createRequest } from '../../services/requestService';
 import * as profileService from '../../services/profileService';

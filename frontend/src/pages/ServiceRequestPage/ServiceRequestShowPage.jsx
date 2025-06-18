@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router';
 import { getUser } from '../../services/authService';
 import * as requestService from '../../services/requestService';
 import './ServiceRequestShowPage.css';

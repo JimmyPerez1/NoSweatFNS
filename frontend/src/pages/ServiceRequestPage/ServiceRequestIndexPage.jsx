@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as requestService from '../../services/requestService';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import './ServiceRequestIndexPage.css';
 
 export default function ServiceRequestIndexPage() {
