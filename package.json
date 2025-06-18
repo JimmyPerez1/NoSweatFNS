@@ -6,6 +6,9 @@
     "start": "node ./backend/server.js",
     "build": "npm install && npm --prefix ./frontend install  && npm --prefix ./frontend run build"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "keywords": [],
   "author": "Jimmy Perez",
   "license": "ISC",
