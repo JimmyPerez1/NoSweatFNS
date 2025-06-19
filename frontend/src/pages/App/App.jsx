@@ -14,7 +14,7 @@ import ServiceRequestShow from '../ServiceRequestPage/ServiceRequestShowPage';
 import ServiceRequestEdit from '../ServiceRequestPage/ServiceRequestEditPage';
 import NavBar from '../../components/NavBar/NavBar';
 import Footer from '../../components/Footer/Footer'
-import './App.css';
+
 
 export default function App() {
   const [user, setUser] = useState(getUser());

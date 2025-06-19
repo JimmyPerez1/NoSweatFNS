@@ -23,7 +23,6 @@ async function create(req, res) {
       req.body.profile,
       { $push: { documents: document._id } }
     );
-    console.log('Document created and profile updated');
     res.status(201).json(document);
   } catch (err) {
     console.error('Error creating document:', err);
