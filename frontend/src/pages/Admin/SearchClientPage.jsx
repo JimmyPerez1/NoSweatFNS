@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import * as profileService from '../../services/profileService';
-import './SearchClientsPage.css';
 
 export default function SearchClientsPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [profiles, setProfiles] = useState([]);
   const [filteredProfiles, setFilteredProfiles] = useState([]);
-
+  
   useEffect(() => {
     async function fetchProfiles() {
       try {
@@ -45,46 +44,61 @@ export default function SearchClientsPage() {
   }, [searchTerm, profiles]);
 
   return (
-    <div className="SearchClientsPage">
-      <h2>Search Clients</h2>
-      <div className="search-bar">
+    <div className="min-h-screen bg-gray-50 p-6">
+      <h2 className="text-3xl font-bold text-blue-800 mb-6 text-center">Search Clients</h2>
+
+      <div className="max-w-4xl mx-auto mb-6">
         <input
           type="text"
           placeholder="Search by name, phone, email, or address..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
-      <div className="search-results">
+      <div className="overflow-x-auto max-w-6xl mx-auto bg-white shadow rounded-lg">
         {filteredProfiles.length > 0 ? (
-          filteredProfiles.map((profile) => {
-            return profile?.user ? (
-              <Link
-                to={`/profile/${profile._id}`}
-                className="result-card"
-                key={profile._id}
-                style={{ textDecoration: 'none', color: 'inherit' }}
-              >
-                <h3>{profile.user.name}</h3>
-                <p><strong>Email:</strong> {profile.user.email}</p>
-                <p><strong>Phone:</strong> {profile.phone || 'N/A'}</p>
-                <ul>
-                  {profile.addresses?.map((addr, idx) => (
-                    <li key={idx}>
-                      {addr.label || 'Label'}: {addr.street || 'Street'}, {addr.city || 'City'}, {addr.state || 'State'} {addr.zip || 'ZIP'}
-                    </li>
-                  ))}
-                </ul>
-              </Link>
-            ) : (
-              <div key={profile._id} className="result-card">
-                <p>⚠️ Invalid profile data</p>
-              </div>
-            );
-          })
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-blue-100">
+              <tr>
+                <th className="px-4 py-3 text-left text-sm font-semibold text-blue-800">Name</th>
+                <th className="px-4 py-3 text-left text-sm font-semibold text-blue-800">Address</th>
+                <th className="px-4 py-3 text-left text-sm font-semibold text-blue-800">Email</th>
+                <th className="px-4 py-3 text-left text-sm font-semibold text-blue-800">Phone</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-100">
+              {filteredProfiles.map((profile) => {
+                const address = profile.addresses?.[0];
+                const formattedAddress = address
+                  ? `${address.street || ''}, ${address.city || ''}, ${address.state || ''} ${address.zip || ''}`
+                  : 'N/A';
+
+                return profile?.user ? (
+                  <tr
+                    key={profile._id}
+                    className="hover:bg-blue-50 transition"
+                  >
+                    <td className="px-4 py-3 font-medium text-blue-700">
+                      <Link to={`/profile/${profile._id}`} className="hover:underline">
+                        {profile.user.name}
+                      </Link>
+                    </td>
+                    <td className="px-4 py-3 text-gray-700">{formattedAddress}</td>
+                    <td className="px-4 py-3 text-gray-700">{profile.user.email}</td>
+                    <td className="px-4 py-3 text-gray-700">{profile.phone || 'N/A'}</td>
+                  </tr>
+                ) : (
+                  <tr key={profile._id}>
+                    <td colSpan={4} className="px-4 py-3 text-red-600">⚠️ Invalid profile data</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         ) : (
-          <p>No matching clients found.</p>
+          <p className="text-center text-gray-600 p-4">No matching clients found.</p>
         )}
       </div>
     </div>

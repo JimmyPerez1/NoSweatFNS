@@ -20,6 +20,7 @@ export default function App() {
   const [user, setUser] = useState(getUser());
 
   return (
+    <div>
     <main className="min-h-screen bg-gray-100 text-gray-900 font-sans">
       <NavBar user={user} setUser={setUser} />
       <section id="main-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -52,7 +53,8 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </section>
-      <Footer />
     </main>
+          <Footer />
+          </div>
   );
 }

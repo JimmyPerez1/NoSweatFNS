@@ -1,3 +1,6 @@
+![No Sweat HVAC App Screenshot](./public/logo.png)
+
+
 # No Sweat: HVAC Service Management App
 
 A full-stack HVAC service management platform designed for clients and technicians to stay connected, manage documents, and schedule services.
@@ -15,7 +18,7 @@ This MERN (MongoDB, Express, React, Node.js) stack application was built to stre
 ## Getting Started
 
 ### Deployed App  
-**[Click to Visit](#)**
+**[Click to Visit](https://nosweatfns-9a1391929de6.herokuapp.com/)**
 
 ### Planning Materials
 - Wireframes & User Flows
@@ -79,9 +82,3 @@ This MERN (MongoDB, Express, React, Node.js) stack application was built to stre
 - Allow users to pay directly from invoice document  
 - Client reviews and feedback collection post-service  
 
----
-
-## Back-End README
-
-This project is paired with the following backend repo:  
-**[NoSweat-FNS Back-End GitHub](#)**
