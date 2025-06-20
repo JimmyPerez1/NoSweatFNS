@@ -22,7 +22,7 @@ This MERN (MongoDB, Express, React, Node.js) stack application was built to stre
 
 ### Planning Materials
 
-![Trello Board](https://trello.com/b/xsufQCt6/no-sweat-fns)
+- [Trello Board]() - Image Generation
 
 - Wireframes & User Flows
 
