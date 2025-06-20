@@ -4,7 +4,7 @@ const BASE_URL = '/api/auth';
 
 export async function signUp(userData) {
   const res = await sendRequest(BASE_URL + '/signup', 'POST', userData);
-  const token = typeof res === 'string' ? res : res.token;    console.log("Token received:", token); 
+  const token = typeof res === 'string' ? res : res.token; 
   localStorage.setItem('token', token);
   return getUser();
 }

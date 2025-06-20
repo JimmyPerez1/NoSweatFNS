@@ -1,4 +1,4 @@
-![No Sweat HVAC App Screenshot](./public/logo.png)
+![No Sweat HVAC App Screenshot](./frontend/public/logo.png)
 
 
 # No Sweat: HVAC Service Management App
@@ -22,9 +22,17 @@ This MERN (MongoDB, Express, React, Node.js) stack application was built to stre
 
 ### Planning Materials
 - Wireframes & User Flows
+
+![No Sweat home](./frontend/public//readme/wire%20frames/homepageWF.png)
+![No Sweat services](./frontend/public//readme/wire%20frames/ServicesWF.png)
+![No Sweat aboutus](./frontend/public//readme/wire%20frames/AboutUsWF.png)
+![No Sweat faq](./frontend/public//readme/wire%20frames/FAQwf.png)
+![No Sweat profile](./frontend/public//readme/wire%20frames/profileWF.png)
+![No Sweat admin](./frontend/public//readme/wire%20frames/AdminProfileWF.png)
+
 - Entity Relationship Diagram
 
-
+![No Sweat ERD](./frontend/public//readme/erd/erd.png)
 
 ---
 
@@ -44,14 +52,16 @@ This MERN (MongoDB, Express, React, Node.js) stack application was built to stre
 - Express  
 - MongoDB + Mongoose  
 - JWT Authentication  
-- Uploadcare SDK  
+- SupaBase SDK  
 - Stripe SDK  
 
 ---
 
 ## Screenshot
 
-*_()_*
+![No Sweat HomePage](./frontend/public//readme/screenshots/homepage.png)
+
+![No Sweat ProfilePage](./frontend/public/readme//screenshots/profilepage.png)
 
 ---
 

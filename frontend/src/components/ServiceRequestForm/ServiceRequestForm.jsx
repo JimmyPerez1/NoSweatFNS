@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getUser } from '../../services/authService';
 import * as applianceService from '../../services/applianceService';
-import './ServiceRequestForm.css';
 
 export default function ServiceRequestForm({ onSubmit, onClose }) {
   const user = getUser();
@@ -16,7 +15,7 @@ export default function ServiceRequestForm({ onSubmit, onClose }) {
   useEffect(() => {
     async function fetchAppliances() {
       try {
-        const data = await applianceService.getAppliances(); // Adjust if this requires user/profileId
+        const data = await applianceService.getAppliances();
         setAppliances(data);
       } catch (err) {
         console.error('Error fetching appliances:', err);

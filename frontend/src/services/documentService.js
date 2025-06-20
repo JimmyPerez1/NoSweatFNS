@@ -49,9 +49,6 @@ export async function handleUpload(e, docType, workOrderNumber, profileId) {
     error: authError,
   } = await supabase.auth.getUser();
 
-  console.log("Supabase User:", user);
-  console.log("Supabase Auth Error:", authError);
-
   if (!user || authError) {
     alert("You must be logged in to upload documents.");
     return;

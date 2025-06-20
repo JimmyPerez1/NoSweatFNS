@@ -7,7 +7,7 @@ module.exports = {
 
 async function create(req, res) {
   try {
-    console.log('Incoming doc request body:', req.body);
+    
     
     const document = await Document.create({
       ...req.body,

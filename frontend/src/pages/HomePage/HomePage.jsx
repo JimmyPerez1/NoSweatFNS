@@ -1,4 +1,4 @@
-import Footer from '../../components/Footer/Footer';
+
 
 export default function HomePage() {
   return (
@@ -17,7 +17,7 @@ export default function HomePage() {
       </video>
 
       {/* Overlay Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4 bg-blue-900/60">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4 bg-blue-900/20">
         <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
           No Sweat Father & Son
         </h1>

@@ -248,7 +248,9 @@ export default function ProfilePage({ user }) {
             <h3 className="text-xl font-semibold text-gray-800">Service Binder</h3>
             {isAdmin && (
               <div className="space-x-2">
-                <button className="bg-gray-800 text-white px-3 py-1 rounded">➕ Add New</button>
+                <button
+                onClick={() => setShowRequestForm(true)}
+                 className="bg-gray-800 text-white px-3 py-1 rounded">➕ Add New</button>
               </div>
             )}
           </div>
@@ -286,7 +288,7 @@ export default function ProfilePage({ user }) {
       {/* Modals */}
       {showUploader && (
         <Modal onClose={() => setShowUploader(false)}>
-          {/* Keep existing modal content, just wrap in Tailwind */}
+
           <div className="p-4 space-y-4">
             <h4 className="text-lg font-bold">Upload New {selectedDocType || 'File'}</h4>
             <label className="block">
