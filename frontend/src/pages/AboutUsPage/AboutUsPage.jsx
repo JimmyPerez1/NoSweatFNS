@@ -14,7 +14,7 @@ export default function AboutUsPage() {
 
       {/* Company Overview */}
       <section className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-6 py-16 items-center">
-        <img src="/your-company-photo.jpg" alt="Company" className="rounded shadow" />
+        <img src="/readme/screenshots/FNSgroupPhoto.png" alt="Company" className="rounded shadow" />
         <div>
           <h2 className="text-2xl font-semibold mb-2">Who We Are</h2>
           <p>
@@ -28,12 +28,12 @@ export default function AboutUsPage() {
       <section className="bg-gray-50 py-16">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 text-center">
           <div>
-            <img src="/founder.jpg" alt="Founder" className="mx-auto rounded-full w-40 h-40 object-cover mb-4" />
+            <img src="/readme/screenshots/GaugesFNS.png" alt="Founder" className="mx-auto rounded-full w-40 h-40 object-cover mb-4" />
             <h3 className="text-xl font-bold">Founder</h3>
             <p className="text-sm text-gray-600 mt-2">A brief story or quote from the founder here.</p>
           </div>
           <div>
-            <img src="/ceo.jpg" alt="CEO" className="mx-auto rounded-full w-40 h-40 object-cover mb-4" />
+            <img src="/readme/screenshots/workingFNS.png" alt="CEO" className="mx-auto rounded-full w-40 h-40 object-cover mb-4" />
             <h3 className="text-xl font-bold">CEO</h3>
             <p className="text-sm text-gray-600 mt-2">A short bio or mission statement from the CEO.</p>
           </div>
