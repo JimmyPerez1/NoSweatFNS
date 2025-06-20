@@ -33,6 +33,7 @@ This MERN (MongoDB, Express, React, Node.js) stack application was built to stre
 ![No Sweat profile](./frontend/public//readme/wire%20frames/profileWF.png)
 ![No Sweat admin](./frontend/public//readme/wire%20frames/AdminProfileWF.png)
 
+
 - Entity Relationship Diagram
 
 ![No Sweat ERD](./frontend/public//readme/erd/erd.png)
@@ -85,7 +86,8 @@ This MERN (MongoDB, Express, React, Node.js) stack application was built to stre
 - [Stripe](https://stripe.com) – Payment handling  (pending)
 - [Lucide Icons](https://lucide.dev) – Iconography  
 - [Calendly](https://calendly.com) – Scheduling tool (pending)
-- [ChatGPT](https://chatgpt.com) – Image generation/Code repair
+- [ChatGPT](https://chatgpt.com) – Code repair
+- [Image Art](https://www.imagine.art/dashboard/video) - Image Generation
 
 ---
 
