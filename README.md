@@ -21,6 +21,9 @@ This MERN (MongoDB, Express, React, Node.js) stack application was built to stre
 **[Click to Visit](https://nosweatfns-9a1391929de6.herokuapp.com/)**
 
 ### Planning Materials
+
+![Trello Board](https://trello.com/b/xsufQCt6/no-sweat-fns)
+
 - Wireframes & User Flows
 
 ![No Sweat home](./frontend/public//readme/wire%20frames/homepageWF.png)
