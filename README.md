@@ -22,7 +22,7 @@ This MERN (MongoDB, Express, React, Node.js) stack application was built to stre
 
 ### Planning Materials
 
-- [Trello Board]() - Image Generation
+- [Trello Board](https://trello.com/c/YUfmu0Ik/1-wireframes)
 
 - Wireframes & User Flows
 
@@ -86,7 +86,7 @@ This MERN (MongoDB, Express, React, Node.js) stack application was built to stre
 - [Stripe](https://stripe.com) – Payment handling  (pending)
 - [Lucide Icons](https://lucide.dev) – Iconography  
 - [Calendly](https://calendly.com) – Scheduling tool (pending)
-- [ChatGPT](https://chatgpt.com) – Code repair
+- [ChatGPT](https://chatgpt.com) – Overcoming blockers
 - [Image Art](https://www.imagine.art/dashboard/video) - Image Generation
 
 ---
