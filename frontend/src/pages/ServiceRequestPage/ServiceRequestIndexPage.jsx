@@ -27,7 +27,6 @@ export default function ServiceRequestIndexPage() {
   useEffect(() => {
     let filtered = [...requests];
 
-    // Work Order or Client search
     if (search.trim()) {
       const term = search.toLowerCase();
       filtered = filtered.filter(req =>
@@ -36,12 +35,10 @@ export default function ServiceRequestIndexPage() {
       );
     }
 
-    // Status filter
     if (statusFilter) {
       filtered = filtered.filter(req => req.status === statusFilter);
     }
 
-    // Date range filter
     if (fromDate) {
       filtered = filtered.filter(req => new Date(req.requestedDate) >= new Date(fromDate));
     }
@@ -57,7 +54,6 @@ export default function ServiceRequestIndexPage() {
       <div className="max-w-6xl mx-auto bg-white shadow-md rounded-xl p-6">
         <h2 className="text-2xl font-bold text-blue-800 mb-6 text-center">Service Requests</h2>
 
-        {/* Filter Controls */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           <input
             type="text"
@@ -91,7 +87,6 @@ export default function ServiceRequestIndexPage() {
           />
         </div>
 
-        {/* Results Table */}
         <div className="overflow-x-auto">
           <table className="min-w-full text-sm border border-gray-200">
             <thead className="bg-gray-100">

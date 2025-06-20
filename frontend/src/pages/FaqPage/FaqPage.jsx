@@ -2,7 +2,7 @@ export default function FaqPage() {
   return (
     <div className="bg-white text-gray-800 py-16 px-6 md:px-12">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-        {/* Left Column: Title + Video */}
+
         <div>
           <h1 className="text-4xl font-bold mb-4 text-blue-900">FAQ</h1>
           <p className="mb-6 text-gray-600">Common questions answered — and what you need to know about working with No Sweat Father & Son.</p>
@@ -17,7 +17,7 @@ export default function FaqPage() {
           </div>
         </div>
 
-        {/* Right Column: FAQ List */}
+
         <div className="space-y-8">
           {[
             {

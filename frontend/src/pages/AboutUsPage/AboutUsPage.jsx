@@ -1,7 +1,7 @@
 export default function AboutUsPage() {
   return (
     <div className="bg-white text-gray-800">
-      {/* Hero Section */}
+
       <section className="text-center py-12 bg-gray-100">
         <h1 className="text-4xl font-bold mb-4">About Us</h1>
         <p className="max-w-xl mx-auto text-lg mb-6">
@@ -12,7 +12,7 @@ export default function AboutUsPage() {
         </button>
       </section>
 
-      {/* Company Overview */}
+
       <section className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-6 py-16 items-center">
         <img src="/readme/screenshots/FNSgroupPhoto.png" alt="Company" className="rounded shadow" />
         <div>
@@ -24,7 +24,7 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* Leadership */}
+
       <section className="bg-gray-50 py-16">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 text-center">
           <div>
@@ -40,7 +40,7 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* Accolades */}
+
       <section className="py-16 bg-white">
         <h2 className="text-center text-2xl font-semibold mb-8">Awards & Recognition</h2>
         <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-6 px-6">
@@ -56,7 +56,7 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* Testimonials */}
+
       <section className="bg-gray-50 py-16">
         <h2 className="text-center text-2xl font-semibold mb-10">What Our Clients Say</h2>
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6">

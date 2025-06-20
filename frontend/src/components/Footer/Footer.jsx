@@ -7,14 +7,14 @@ export default function Footer() {
   return (
     <footer className="bg-blue-900 text-white py-8 px-6 mt-8 w-full">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-        {/* Logo */}
+
         <div className="mb-4 md:mb-0">
           <Link to="/">
             <img src="/logo.png" alt="No Sweat HVAC Logo" className="h-12 w-auto" />
           </Link>
         </div>
 
-        {/* Nav Links + Contact */}
+
         <div className="flex flex-col items-center gap-2">
           <div className="flex flex-col md:flex-row gap-4 items-center">
             <a href="/" className="hover:text-orange-400 transition">Home</a>
@@ -32,7 +32,7 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* License + Social Icons */}
+
         <div className="text-center md:text-right text-sm space-y-2">
           <p>LIC: CAC1823625</p>
           <div className="flex justify-center md:justify-end gap-4 mt-2">

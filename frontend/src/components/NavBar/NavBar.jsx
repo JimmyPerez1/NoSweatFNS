@@ -17,12 +17,12 @@ export default function NavBar({ user, setUser }) {
   return (
     <nav className="sticky top-0 z-50 bg-blue-900 px-6 py-4 shadow-sm">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        {/* Logo */}
+
         <Link to="/">
           <img src="/logo.png" alt="No Sweat HVAC Logo" className="h-10 w-auto" />
         </Link>
 
-        {/* Navigation Links */}
+
         <div className="flex items-center gap-4">
           <NavLink to="/" className={({ isActive }) => (isActive ? `${baseLink} ${activeLink}` : baseLink)}>Home</NavLink>
           <NavLink to="/services" className={({ isActive }) => (isActive ? `${baseLink} ${activeLink}` : baseLink)}>Services</NavLink>

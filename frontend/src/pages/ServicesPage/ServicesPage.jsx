@@ -30,7 +30,7 @@ export default function ServicesPage() {
   return (
     <section className="min-h-screen bg-white py-16 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Heading */}
+
         <h2 className="text-3xl font-bold text-center text-blue-900 mb-4">
           Our Services
         </h2>
@@ -38,7 +38,7 @@ export default function ServicesPage() {
           Select a category to learn more about how we can help.
         </p>
 
-        {/* Toggle Buttons */}
+
         <div className="flex justify-center gap-4 mb-10 flex-wrap">
           {categories.map((cat) => (
             <button
@@ -56,7 +56,7 @@ export default function ServicesPage() {
           ))}
         </div>
 
-        {/* Services Grid */}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {serviceData[activeCategory].map((service) => (
             <div

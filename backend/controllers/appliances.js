@@ -24,7 +24,6 @@ async function getAppliances(req, res) {
 }
 
 
-// admin add appliance
 async function addAppliance(req, res) {
   try {
     if (!req.user.isAdmin) {
@@ -72,10 +71,8 @@ async function deleteAppliance(req, res) {
       return res.status(403).json({ error: 'Admin access only' });
     }
 
-    // Delete the appliance
     await Appliance.findByIdAndDelete(req.params.applianceId);
 
-    // Remove reference from profile
     await Profile.findByIdAndUpdate(req.params.profileId, {
       $pull: { appliances: req.params.applianceId },
     });

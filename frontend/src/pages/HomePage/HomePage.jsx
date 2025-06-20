@@ -3,7 +3,7 @@
 export default function HomePage() {
   return (
     <div>
-      {/* Background Video */}
+
             <section className="relative h-screen w-full overflow-hidden">
       <video
         autoPlay
@@ -16,7 +16,7 @@ export default function HomePage() {
         Your browser does not support the video tag.
       </video>
 
-      {/* Overlay Content */}
+
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4 bg-blue-900/20">
         <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
           No Sweat Father & Son
@@ -33,7 +33,7 @@ export default function HomePage() {
 
       </div>
     </section>
-            {/* Services */}
+
       <section className="py-16 bg-gray-100">
         <div className="max-w-6xl mx-auto grid gap-8 grid-cols-1 md:grid-cols-3 px-6 text-center">
           {['Maintenance & Repairs', 'New System Installs', 'Deals and Finance options'].map((title) => (

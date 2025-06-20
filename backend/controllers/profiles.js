@@ -44,7 +44,6 @@ async function getProfileById(req, res) {
   }
 };
 
-// Put update profiles
 async function updateProfile(req, res) {
   try {
     const profileId = req.params.profileId?.toString();
@@ -81,7 +80,6 @@ async function updateProfile(req, res) {
   }
 };
 
-// Delete Profile admins only
 async function deleteProfile(req, res) {
   try {
     if (!req.user.isAdmin) {
@@ -96,7 +94,6 @@ async function deleteProfile(req, res) {
   }
 };
 
-// Get all profiles admins only
 async function getAllProfiles(req, res) {
   try {
     if (!req.user.isAdmin) {

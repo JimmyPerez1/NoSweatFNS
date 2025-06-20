@@ -58,7 +58,7 @@ export default function ProfilePage({ user }) {
 
   return (
     <div className="min-h-screen flex bg-gray-50">
-      {/* Sidebar */}
+
       <aside className="w-64 bg-white border-r shadow-md p-4 space-y-4">
         <h3 className="text-lg font-bold text-gray-700">My Info</h3>
 
@@ -98,11 +98,11 @@ export default function ProfilePage({ user }) {
         )}
       </aside>
 
-      {/* Dashboard Content */}
+
       <main className="flex-1 p-6 space-y-8">
         <h2 className="text-3xl font-bold text-blue-800">My Dashboard</h2>
 
-        {/* Client Info */}
+
         <section className="bg-white p-4 rounded shadow">
           <div className="flex justify-between items-center mb-2">
             <h3 className="text-xl font-semibold text-gray-800">Client Info</h3>
@@ -120,7 +120,7 @@ export default function ProfilePage({ user }) {
           </ul>
         </section>
 
-        {/* Appliances Panel */}
+
         <section className="bg-white p-4 rounded shadow">
           <div className="flex justify-between items-center mb-2">
             <h3 className="text-xl font-semibold text-gray-800">Appliances & Warranty Info</h3>
@@ -144,7 +144,7 @@ export default function ProfilePage({ user }) {
           )}
         </section>
 
-        {/* Documents Panel */}
+
         <section className="bg-white p-4 rounded shadow">
           <div className="flex justify-between items-center mb-2">
             <h3 className="text-xl font-semibold text-gray-800">Documents</h3>
@@ -193,7 +193,7 @@ export default function ProfilePage({ user }) {
           )}
         </section>
 
-        {/* Invoices Panel */}
+
         <section className="bg-white p-4 rounded shadow">
           <div className="flex justify-between items-center mb-2">
             <h3 className="text-xl font-semibold text-gray-800">Invoices</h3>
@@ -242,7 +242,7 @@ export default function ProfilePage({ user }) {
           )}
         </section>
 
-        {/* Service Binder Panel */}
+
         <section className="bg-white p-4 rounded shadow">
           <div className="flex justify-between items-center mb-2">
             <h3 className="text-xl font-semibold text-gray-800">Service Binder</h3>
@@ -285,7 +285,7 @@ export default function ProfilePage({ user }) {
         </section>
       </main>
 
-      {/* Modals */}
+
       {showUploader && (
         <Modal onClose={() => setShowUploader(false)}>
 
