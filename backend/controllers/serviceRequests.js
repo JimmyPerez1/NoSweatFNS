@@ -35,6 +35,10 @@ async function create(req, res) {
     const nextNumber = parseInt(lastNumber) + 1;
     const workOrderNumber = `WO-${currentYear}-${nextNumber}`;
 
+    if (req.body.requestedDate && !req.body.requestedDate.includes('T')) {
+      req.body.requestedDate += 'T00:00';
+    }
+
     const request = await ServiceRequest.create({
       ...req.body,
       profile: req.user.profile,
